@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17120d">
+  <meta name="description" content="Na Avenida Beer — um primeiro esboço para apresentar a marca, o clima da casa e seus destaques.">
+  <title>Na Avenida Beer | Seu ponto de encontro</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317120d'/%3E%3Cpath d='M19 15h26l-3 34H22z' fill='%23e9a632'/%3E%3Cpath d='M18 14h28v8H18z' fill='%23fff7e5'/%3E%3C/svg%3E">
+  <style>
+    :root { color-scheme: dark; --ink:#17120d; --cream:#f5efe3; --amber:#f2aa32; --muted:#b9aa92; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--ink); color:var(--cream); font-family:Arial,Helvetica,sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    button { font:inherit; }
+    .wrap { width:min(1180px,calc(100% - 48px)); margin-inline:auto; }
+    header { position:absolute; z-index:2; left:0; right:0; top:0; border-bottom:1px solid rgba(255,255,255,.16); }
+    header .wrap { min-height:90px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.04em; text-transform:uppercase; font-size:1.02rem; line-height:1; }
+    .brand small { display:block; font-size:.62rem; letter-spacing:.3em; font-weight:700; color:var(--amber); margin-top:6px; }
+    .brand-mark { color:var(--amber); font-size:2.1rem; line-height:1; transform:rotate(-14deg); }
+    nav { display:flex; align-items:center; gap:34px; font-size:.83rem; font-weight:700; text-transform:uppercase; letter-spacing:.13em; }
+    nav a:hover, .footer-links a:hover { color:var(--amber); }
+    .nav-cta { border:1px solid var(--amber); color:var(--amber); padding:13px 17px; }
+    .hero { position:relative; min-height:780px; min-height:100svh; display:flex; align-items:center; overflow:hidden; background:#20160d; }
+    .hero::before { content:""; position:absolute; inset:0; background-image:linear-gradient(90deg,rgba(14,11,8,.95) 0%,rgba(14,11,8,.8) 35%,rgba(14,11,8,.18) 100%),url('hero.jpg'); background-position:center,right center; background-size:cover; }
+    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,var(--ink),transparent 20%); pointer-events:none; }
+    .hero-content { position:relative; z-index:1; padding-block:160px 105px; }
+    .eyebrow { color:var(--amber); font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.28em; display:flex; align-items:center; gap:14px; }
+    .eyebrow::before { content:""; display:block; width:36px; height:2px; background:currentColor; }
+    h1,h2,h3,p { margin-top:0; }
+    h1 { font-family:Georgia,serif; font-weight:700; font-size:clamp(4rem,9vw,8.6rem); line-height:.92; letter-spacing:-.065em; max-width:770px; margin:30px 0 28px; }
+    h1 em { color:var(--amber); font-style:normal; }
+    .lead { max-width:510px; font-size:1.15rem; line-height:1.65; color:#dfd2bf; margin-bottom:36px; }
+    .button { display:inline-flex; align-items:center; justify-content:center; min-height:55px; background:var(--amber); color:#241608; font-size:.85rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; padding:0 26px; transition:background .2s, transform .2s; }
+    .button:hover { background:#ffc15e; transform:translateY(-2px); }
+    .hero-caption { position:absolute; z-index:1; right:max(24px,calc((100vw - 1180px)/2)); bottom:54px; color:#eee0cc; font-size:.74rem; font-weight:bold; letter-spacing:.2em; text-transform:uppercase; }
+    .section { padding:110px 0; }
+    .section-header { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:42px; }
+    .section h2 { font-family:Georgia,serif; font-size:clamp(2.7rem,5vw,5rem); letter-spacing:-.05em; line-height:1; margin:15px 0 0; }
+    .section-intro { color:var(--muted); max-width:350px; line-height:1.6; margin:0; }
+    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .card { background:#241d15; min-height:255px; padding:33px; border:1px solid #3a2e20; display:flex; flex-direction:column; justify-content:space-between; }
+    .card-num { color:var(--amber); font-size:.8rem; font-weight:800; letter-spacing:.22em; }
+    .card h3 { font-family:Georgia,serif; font-size:2rem; margin:0 0 12px; letter-spacing:-.04em; }
+    .card p { color:var(--muted); line-height:1.55; margin:0; }
+    .statement { background:var(--amber); color:#251607; padding:75px 0; }
+    .statement .wrap { display:flex; align-items:center; justify-content:space-between; gap:30px; }
+    .statement h2 { font-family:Georgia,serif; font-size:clamp(2.7rem,5vw,5.4rem); letter-spacing:-.06em; line-height:1; max-width:700px; margin:0; }
+    .statement p { max-width:260px; font-weight:600; line-height:1.65; margin:0; }
+    footer { padding:55px 0 25px; }
+    .footer-main { display:flex; align-items:start; justify-content:space-between; gap:25px; padding-bottom:65px; }
+    .footer-main p { max-width:350px; color:var(--muted); line-height:1.6; margin-top:22px; }
+    .footer-links { display:flex; gap:30px; text-transform:uppercase; letter-spacing:.12em; font-size:.78rem; font-weight:800; }
+    .footer-bottom { border-top:1px solid #3b3023; padding-top:24px; color:#9b8a73; font-size:.82rem; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    @media(max-width:800px) { nav a:not(.nav-cta) {display:none} .hero {min-height:740px} .hero::before {background-image:linear-gradient(90deg,rgba(14,11,8,.92),rgba(14,11,8,.48)),url('hero.jpg');background-position:center,60% center} .cards {grid-template-columns:1fr} .card {min-height:210px} .section-header,.statement .wrap,.footer-main {display:block} .section-intro {margin-top:25px} .statement p {margin-top:25px} .footer-links {margin-top:30px;flex-wrap:wrap} }
+    @media(max-width:520px) { .wrap {width:min(100% - 32px,1180px)} header .wrap {min-height:76px} .brand {font-size:.82rem}.brand-mark{font-size:1.7rem}.brand small{font-size:.5rem} .nav-cta{font-size:.69rem;padding:11px} .hero {min-height:690px} .hero-content{padding-block:140px 100px} h1{font-size:clamp(3.9rem,18vw,5.8rem)} .hero-caption{display:none} .section{padding:75px 0} .statement{padding:65px 0} }
+    @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .button{transition:none} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">✦</span><span>Na Avenida<small>Beer</small></span></a>
+      <nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-cta" href="#contato">Conheça a casa</a></nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="wrap hero-content">
+        <div class="eyebrow">O encontro começa aqui</div>
+        <h1 id="hero-title">A vida acontece <em>na avenida.</em></h1>
+        <p class="lead">Cerveja gelada, bons encontros e aquele clima que faz você querer ficar mais um pouco.</p>
+        <a class="button" href="#destaques">Explore a experiência</a>
+      </div>
+      <span class="hero-caption">Na Avenida Beer · Brinde aos bons momentos</span>
+    </section>
+    <section class="section" id="destaques">
+      <div class="wrap">
+        <div class="section-header"><div><div class="eyebrow">O que faz a noite</div><h2>Seu lugar na avenida.</h2></div><p class="section-intro">Um espaço pensado para reunir a turma, brindar sem pressa e aproveitar cada momento.</p></div>
+        <div class="cards">
+          <article class="card"><span class="card-num">01 /</span><div><h3>Cerveja gelada</h3><p>O brinde certo para começar bem e deixar a conversa seguir.</p></div></article>
+          <article class="card"><span class="card-num">02 /</span><div><h3>Bons encontros</h3><p>Tem sempre um motivo para juntar os amigos na mesma mesa.</p></div></article>
+          <article class="card"><span class="card-num">03 /</span><div><h3>Clima de casa</h3><p>Um lugar para chegar, relaxar e aproveitar sem olhar para o relógio.</p></div></article>
+        </div>
+      </div>
+    </section>
+    <section class="statement" id="sobre"><div class="wrap"><h2>Entre uma conversa e outra, nasce a melhor história.</h2><p>Na Avenida Beer. O próximo encontro já tem lugar.</p></div></section>
+  </main>
+  <footer id="contato"><div class="wrap"><div class="footer-main"><div><div class="brand"><span class="brand-mark" aria-hidden="true">✦</span><span>Na Avenida<small>Beer</small></span></div><p>Em breve, mais informações sobre a casa, cardápio e contato por aqui.</p></div><div class="footer-links"><a href="#inicio">Início</a><a href="#destaques">Destaques</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Na Avenida Beer. Esboço inicial.</span><span>Foto: <a href="https://unsplash.com/photos/a-glass-of-amber-beer-with-white-foam-VCFtLJwYPe0" target="_blank" rel="noopener noreferrer">Aleksandr Isaev / Unsplash</a></span></div></div></footer>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
