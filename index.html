@@ -4,139 +4,45 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080808">
-  <meta name="description" content="Na Avenida Beer — cerveja gelada, bons encontros e uma noite para aproveitar sem pressa.">
-  <title>Na Avenida Beer | Seu ponto de encontro</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317120d'/%3E%3Cpath d='M19 15h26l-3 34H22z' fill='%23e9a632'/%3E%3Cpath d='M18 14h28v8H18z' fill='%23fff7e5'/%3E%3C/svg%3E">
+  <meta name="description" content="Explore a fachada da Na Avenida Beer e uma vista conceitual provisória do interior.">
+  <title>Na Avenida Beer | Explore o espaço</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23080808'/%3E%3Cpath d='M17 44V20h5l20 17V20h5v24h-5L22 27v17z' fill='%23d0af79'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/fachada.webp" as="image">
   <style>
-    :root { color-scheme: dark; --ink:#17120d; --cream:#f5efe3; --amber:#f2aa32; --muted:#b9aa92; }
-    * { box-sizing:border-box; }
-    html { scroll-behavior:smooth; }
-    body { margin:0; background:var(--ink); color:var(--cream); font-family:Arial,Helvetica,sans-serif; }
-    a { color:inherit; text-decoration:none; }
-    button { font:inherit; }
-    .wrap { width:min(1180px,calc(100% - 48px)); margin-inline:auto; }
-    header { position:absolute; z-index:2; left:0; right:0; top:0; border-bottom:1px solid rgba(255,255,255,.16); }
-    header .wrap { min-height:90px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
-    .brand { display:flex; align-items:center; gap:12px; font-weight:900; letter-spacing:.04em; text-transform:uppercase; font-size:1.02rem; line-height:1; }
-    .brand small { display:block; font-size:.62rem; letter-spacing:.3em; font-weight:700; color:var(--amber); margin-top:6px; }
-    .brand-mark { color:var(--amber); font-size:2.1rem; line-height:1; transform:rotate(-14deg); }
-    nav { display:flex; align-items:center; gap:34px; font-size:.83rem; font-weight:700; text-transform:uppercase; letter-spacing:.13em; }
-    nav a:hover, .footer-links a:hover { color:var(--amber); }
-    .nav-cta { border:1px solid var(--amber); color:var(--amber); padding:13px 17px; }
-    .hero { position:relative; min-height:780px; min-height:100svh; display:flex; align-items:center; overflow:hidden; background:#20160d; }
-    .hero::before { content:""; position:absolute; inset:0; background-image:linear-gradient(90deg,rgba(14,11,8,.95) 0%,rgba(14,11,8,.8) 35%,rgba(14,11,8,.18) 100%),url('hero.jpg'); background-position:center,right center; background-size:cover; }
-    .hero::after { content:""; position:absolute; inset:0; background:linear-gradient(0deg,var(--ink),transparent 20%); pointer-events:none; }
-    .hero-content { position:relative; z-index:1; padding-block:160px 105px; }
-    .eyebrow { color:var(--amber); font-size:.8rem; font-weight:800; text-transform:uppercase; letter-spacing:.28em; display:flex; align-items:center; gap:14px; }
-    .eyebrow::before { content:""; display:block; width:36px; height:2px; background:currentColor; }
-    h1,h2,h3,p { margin-top:0; }
-    h1 { font-family:Georgia,serif; font-weight:700; font-size:clamp(4rem,9vw,8.6rem); line-height:.92; letter-spacing:-.065em; max-width:770px; margin:30px 0 28px; }
-    h1 em { color:var(--amber); font-style:normal; }
-    .lead { max-width:510px; font-size:1.15rem; line-height:1.65; color:#dfd2bf; margin-bottom:36px; }
-    .button { display:inline-flex; align-items:center; justify-content:center; min-height:55px; background:var(--amber); color:#241608; font-size:.85rem; font-weight:900; letter-spacing:.08em; text-transform:uppercase; padding:0 26px; transition:background .2s, transform .2s; }
-    .button:hover { background:#ffc15e; transform:translateY(-2px); }
-    .hero-caption { position:absolute; z-index:1; right:max(24px,calc((100vw - 1180px)/2)); bottom:54px; color:#eee0cc; font-size:.74rem; font-weight:bold; letter-spacing:.2em; text-transform:uppercase; }
-    .section { padding:110px 0; }
-    .section-header { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:42px; }
-    .section h2 { font-family:Georgia,serif; font-size:clamp(2.7rem,5vw,5rem); letter-spacing:-.05em; line-height:1; margin:15px 0 0; }
-    .section-intro { color:var(--muted); max-width:350px; line-height:1.6; margin:0; }
-    .cards { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-    .card { background:#241d15; min-height:255px; padding:33px; border:1px solid #3a2e20; display:flex; flex-direction:column; justify-content:space-between; }
-    .card-num { color:var(--amber); font-size:.8rem; font-weight:800; letter-spacing:.22em; }
-    .card h3 { font-family:Georgia,serif; font-size:2rem; margin:0 0 12px; letter-spacing:-.04em; }
-    .card p { color:var(--muted); line-height:1.55; margin:0; }
-    .statement { background:var(--amber); color:#251607; padding:75px 0; }
-    .statement .wrap { display:flex; align-items:center; justify-content:space-between; gap:30px; }
-    .statement h2 { font-family:Georgia,serif; font-size:clamp(2.7rem,5vw,5.4rem); letter-spacing:-.06em; line-height:1; max-width:700px; margin:0; }
-    .statement p { max-width:260px; font-weight:600; line-height:1.65; margin:0; }
-    footer { padding:55px 0 25px; }
-    .footer-main { display:flex; align-items:start; justify-content:space-between; gap:25px; padding-bottom:65px; }
-    .footer-main p { max-width:350px; color:var(--muted); line-height:1.6; margin-top:22px; }
-    .footer-links { display:flex; gap:30px; text-transform:uppercase; letter-spacing:.12em; font-size:.78rem; font-weight:800; }
-    .footer-bottom { border-top:1px solid #3b3023; padding-top:24px; color:#9b8a73; font-size:.82rem; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
-    @media(max-width:800px) { nav a:not(.nav-cta) {display:none} .hero {min-height:740px} .hero::before {background-image:linear-gradient(90deg,rgba(14,11,8,.92),rgba(14,11,8,.48)),url('hero.jpg');background-position:center,60% center} .cards {grid-template-columns:1fr} .card {min-height:210px} .section-header,.statement .wrap,.footer-main {display:block} .section-intro {margin-top:25px} .statement p {margin-top:25px} .footer-links {margin-top:30px;flex-wrap:wrap} }
-    @media(max-width:520px) { .wrap {width:min(100% - 32px,1180px)} header .wrap {min-height:76px} .brand {font-size:.82rem}.brand-mark{font-size:1.7rem}.brand small{font-size:.5rem} .nav-cta{font-size:.69rem;padding:11px} .hero {min-height:690px} .hero-content{padding-block:140px 100px} h1{font-size:clamp(3.9rem,18vw,5.8rem)} .hero-caption{display:none} .section{padding:75px 0} .statement{padding:65px 0} }
-    @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .button{transition:none} }
-    /* Editorial dark direction */
-    :root { --ink:#080808; --cream:#f5f2ed; --amber:#d0af79; --muted:#aaa7a1; }
-    body { background:#080808; color:var(--cream); -webkit-font-smoothing:antialiased; }
-    a:focus-visible { outline:2px solid var(--amber); outline-offset:5px; }
-    .wrap { width:min(1240px,calc(100% - 80px)); }
-    header { position:relative; background:#080808; border-color:#33312d; }
-    header .wrap { min-height:96px; }
-    .brand { letter-spacing:.13em; font-weight:800; }
-    .brand small { color:var(--amber); font-weight:500; }
-    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--amber); font-family:Georgia,serif; font-size:1.6rem; font-weight:400; line-height:1; transform:none; padding-right:3px; }
-    nav { font-size:.77rem; letter-spacing:.17em; }
-    .nav-cta { border:0; border-bottom:1px solid var(--amber); padding:10px 0; }
-    .hero { min-height:690px; display:grid; grid-template-columns:52% 48%; border-bottom:1px solid #33312d; background:#080808; }
-    .hero::before { inset:0 0 0 52%; background-image:linear-gradient(0deg,rgba(0,0,0,.48),transparent 45%),url('hero.jpg'); background-position:center,center; background-size:cover; filter:brightness(.68) saturate(.65); }
-    .hero::after { display:none; }
-    .hero-content { width:auto; max-width:none; margin:0; padding:95px 5.5vw 110px max(40px,calc((100vw - 1240px)/2)); align-self:center; }
-    .eyebrow { font-size:.73rem; letter-spacing:.28em; }
-    .eyebrow::before { height:1px; width:30px; }
-    h1,h2,h3 { font-weight:400!important; }
-    h1 { font-size:clamp(4.4rem,7.2vw,8.1rem); line-height:.97; max-width:710px; margin:34px 0 32px; }
-    h1 em { font-style:italic; font-weight:400; }
-    .lead { max-width:440px; color:#c7c3bc; font-size:1.12rem; line-height:1.7; margin-bottom:40px; }
-    .button { background:transparent; border:1px solid var(--amber); color:var(--amber); gap:28px; min-height:55px; font-size:.78rem; letter-spacing:.14em; }
-    .button::after { content:'↗'; font-size:1.2rem; font-weight:400; }
-    .button:hover { background:var(--amber); color:#080808; transform:none; }
-    .hero-caption { right:max(30px,calc((100vw - 1240px)/2)); bottom:35px; font-weight:400; }
-    .section { padding:120px 0 125px; }
-    .section-header { display:grid; grid-template-columns:1fr 310px; align-items:end; gap:40px; margin-bottom:63px; }
-    .section h2 { font-size:clamp(3.3rem,5.6vw,6.2rem); max-width:780px; margin-top:22px; }
-    .section-intro { line-height:1.75; margin-bottom:6px; }
-    .cards { display:block; border-top:1px solid #33312d; }
-    .card { display:grid; grid-template-columns:80px minmax(220px,.8fr) 1fr; align-items:center; gap:24px; min-height:148px; padding:28px 8px; border:0; border-bottom:1px solid #33312d; background:transparent; }
-    .card > div { grid-column:2 / 4; display:grid; grid-template-columns:minmax(220px,.8fr) 1fr; align-items:center; gap:24px; }
-    .card-num { align-self:start; padding-top:15px; }
-    .card h3 { font-size:clamp(2rem,3vw,3rem); margin:0; }
-    .card p { max-width:420px; font-size:1rem; line-height:1.65; }
-    .statement { background:#111110; color:var(--cream); border-block:1px solid #33312d; padding:110px 0; }
-    .statement .wrap { display:grid; grid-template-columns:1fr 250px; align-items:end; gap:50px; }
-    .statement h2 { max-width:870px; font-size:clamp(3.2rem,6vw,6.8rem); line-height:1.04; }
-    .statement p { color:var(--muted); font-weight:400; margin-bottom:8px; }
-    footer { padding:70px 0 30px; }
-    .footer-main { padding-bottom:88px; }
-    .footer-main p { font-size:1rem; }
-    .footer-bottom { border-color:#33312d; color:#8d8982; line-height:1.6; }
-    .footer-bottom a { text-decoration:underline; text-underline-offset:3px; }
-    @media(max-width:900px) { .wrap{width:min(100% - 48px,1240px)} .hero{grid-template-columns:55% 45%;min-height:620px} .hero::before{left:55%} .hero-content{padding:80px 35px 90px 24px} h1{font-size:clamp(4rem,8vw,6rem)} .section-header{grid-template-columns:1fr 240px} .card{grid-template-columns:55px 1fr 1fr}.card > div{grid-template-columns:1fr 1fr} .statement .wrap{grid-template-columns:1fr 200px} }
-    @media(max-width:680px) { header .wrap{min-height:76px} nav a:not(.nav-cta){display:none} .nav-cta{font-size:.66rem} .brand{font-size:.77rem;gap:9px} .brand-mark{width:36px;height:36px;font-size:1.35rem} .brand small{font-size:.54rem} .hero{display:flex;flex-direction:column;min-height:0;padding-top:340px} .hero::before{inset:0 0 auto;height:340px;background-image:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%),url('hero.jpg');background-position:center;filter:brightness(.68) saturate(.65)} .hero-content{padding:55px 24px 78px} h1{font-size:clamp(3.8rem,12vw,6rem);margin:25px 0} .lead{font-size:1rem;margin-bottom:30px} .hero-caption{display:none} .section{padding:84px 0} .section-header{display:block;margin-bottom:39px} .section-intro{margin-top:24px;max-width:450px} .card{grid-template-columns:42px 1fr;gap:10px 16px;min-height:0;padding:29px 0} .card-num{grid-row:span 2;padding-top:7px} .card > div{grid-column:2;display:block}.card h3{grid-column:auto}.card p{grid-column:auto;margin-top:10px} .statement{padding:80px 0} .statement .wrap{display:block} .statement p{max-width:320px;margin-top:30px} .footer-main{display:block;padding-bottom:64px} .footer-links{margin-top:38px;flex-wrap:wrap} }
-    @media(max-width:420px) { .wrap{width:calc(100% - 36px)} .hero-content{padding-inline:18px} h1{font-size:clamp(3.65rem,13.2vw,4.5rem)} .section h2,.statement h2{font-size:3.1rem} }
+    :root{color-scheme:dark;--black:#080808;--panel:#111110;--line:#38352f;--white:#f5f2ed;--muted:#b5b1aa;--gold:#d0af79}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible,.look-surface:focus-visible{outline:2px solid var(--gold);outline-offset:4px}.wrap{width:min(1240px,calc(100% - 64px));margin-inline:auto}
+    .site-header{position:absolute;z-index:30;top:0;left:0;right:0;border-bottom:1px solid rgba(255,255,255,.24);background:linear-gradient(180deg,rgba(0,0,0,.66),transparent)}.site-header .wrap{height:88px;display:flex;align-items:center;justify-content:space-between;gap:22px}.brand{display:inline-flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.13em;font-size:.92rem;font-weight:800;line-height:1.1;white-space:nowrap}.brand-mark{display:grid;place-items:center;width:39px;height:39px;border:1px solid var(--gold);color:var(--gold);font:1.45rem Georgia,serif;letter-spacing:-.12em;padding-right:3px}.brand small{display:block;margin-top:5px;font-size:.61rem;font-weight:500;letter-spacing:.38em;color:var(--gold)}nav{display:flex;align-items:center;gap:30px;font-size:.75rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase}nav a:hover,.footer-links a:hover{color:var(--gold)}.nav-accent{color:var(--gold);border-bottom:1px solid var(--gold);padding:9px 0}
+    .journey{height:285svh;position:relative;background:#080808}.journey-sticky{position:sticky;top:0;height:100svh;min-height:480px;overflow:hidden;isolation:isolate}.scene{position:absolute;inset:0;overflow:hidden}.facade-scene{z-index:1}.facade-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform-origin:56.5% 54%;will-change:transform}.facade-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.27) 52%,rgba(0,0,0,.1)),linear-gradient(0deg,rgba(0,0,0,.72),transparent 38%);pointer-events:none}.interior-scene{z-index:2;opacity:0;pointer-events:none;background:#090807}.look-surface{position:absolute;inset:0;overflow:hidden;touch-action:pan-y;cursor:grab}.look-surface:active{cursor:grabbing}.interior-image{position:absolute;top:0;left:50%;height:100%;width:max(100%,300svh);object-fit:cover;max-width:none;transform:translate3d(calc(-50% + var(--look-offset,0px)),0,0);will-change:transform;pointer-events:none}.interior-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.74),transparent 38%),linear-gradient(180deg,rgba(0,0,0,.52),transparent 29%);pointer-events:none}.journey[data-scene="inside"] .interior-scene{pointer-events:auto}
+    .hero-copy{position:absolute;z-index:5;left:max(32px,calc((100vw - 1240px)/2));bottom:clamp(105px,15vh,190px);max-width:690px;pointer-events:auto}.eyebrow{display:flex;align-items:center;gap:14px;color:var(--gold);font-size:.75rem;font-weight:700;letter-spacing:.27em;text-transform:uppercase;line-height:1.4}.eyebrow::before{content:"";width:30px;height:1px;background:currentColor;flex:none}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400}h1{font-size:clamp(4rem,7.7vw,8.2rem);line-height:.96;letter-spacing:-.065em;margin:27px 0 24px;max-width:750px}h1 em,.statement h2 em{color:var(--gold);font-weight:400}.hero-copy p{max-width:490px;color:#eee8dd;font-size:1.1rem;line-height:1.65;margin:0 0 29px}.actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.button{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 19px;border:1px solid var(--gold);background:var(--gold);color:#080808;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.button:hover{background:#e8c997}.button-ghost{background:rgba(0,0,0,.35);color:var(--white);border-color:rgba(255,255,255,.56)}.button-ghost:hover{background:rgba(255,255,255,.18)}.scroll-hint{position:absolute;z-index:5;left:max(32px,calc((100vw - 1240px)/2));bottom:35px;color:#e5dfd5;font-size:.77rem;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:16px}.scroll-hint::before{content:"";width:1px;height:36px;background:var(--gold)}.scene-status{position:absolute;z-index:5;top:110px;right:max(32px,calc((100vw - 1240px)/2));border:1px solid rgba(255,255,255,.36);background:rgba(0,0,0,.49);padding:11px 14px;color:#ece5db;font-size:.76rem;letter-spacing:.12em;text-transform:uppercase}.progress{position:absolute;z-index:5;bottom:0;left:0;width:100%;height:3px;background:rgba(255,255,255,.24)}.progress span{display:block;height:100%;width:0;background:var(--gold)}
+    .inside-ui{position:absolute;z-index:6;left:max(32px,calc((100vw - 1240px)/2));right:max(32px,calc((100vw - 1240px)/2));bottom:34px;display:flex;justify-content:space-between;align-items:end;gap:25px;opacity:0;pointer-events:none}.inside-ui h2{font-size:clamp(2.3rem,4vw,4.4rem);line-height:1;margin:13px 0 10px;letter-spacing:-.055em}.inside-ui p{margin:0;color:#ddd7cb;line-height:1.5}.concept-label{font-size:.8rem!important;max-width:510px}.look-controls{display:flex;gap:8px;flex:none}.icon-button{width:48px;height:48px;border:1px solid rgba(255,255,255,.65);background:rgba(0,0,0,.48);color:var(--white);font-size:1.25rem}.icon-button:hover{border-color:var(--gold);color:var(--gold)}.journey[data-scene="inside"] .inside-ui{opacity:1;pointer-events:auto}.journey[data-scene="inside"] .hero-copy,.journey[data-scene="inside"] .scroll-hint{pointer-events:none}.sound-bar{position:absolute;z-index:9;top:110px;left:max(32px,calc((100vw - 1240px)/2));display:flex;align-items:center;gap:12px;max-width:min(560px,calc(100% - 64px))}.sound-button{padding:9px 0;background:transparent;border:0;border-bottom:1px solid var(--gold);color:var(--white);font-size:.78rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;white-space:nowrap}.sound-status{font-size:.76rem;color:#ebe6dc;line-height:1.4;text-shadow:0 1px 3px #000}.skip-link{position:absolute;z-index:50;top:-100px;left:20px;padding:12px;background:var(--gold);color:#000}.skip-link:focus{top:12px}
+    .section{padding:116px 0}.section-header{display:grid;grid-template-columns:1fr 310px;align-items:end;gap:40px;margin-bottom:62px}.section h2{font-size:clamp(3.2rem,5.5vw,6rem);line-height:1.03;letter-spacing:-.06em;margin:20px 0 0;max-width:800px}.section-intro{color:var(--muted);line-height:1.75;margin:0 0 7px}.cards{border-top:1px solid var(--line)}.card{display:grid;grid-template-columns:80px 1fr;align-items:start;gap:24px;padding:30px 8px;border-bottom:1px solid var(--line)}.card-num{color:var(--gold);font-size:.78rem;letter-spacing:.18em;padding-top:14px}.card>div{display:grid;grid-template-columns:.8fr 1fr;align-items:center;gap:30px}.card h3{font-size:clamp(2rem,3vw,3rem);letter-spacing:-.045em;line-height:1.1;margin:0}.card p{color:var(--muted);line-height:1.65;margin:0;max-width:420px}.statement{background:var(--panel);border-block:1px solid var(--line);padding:100px 0}.statement .wrap{display:grid;grid-template-columns:1fr 240px;align-items:end;gap:45px}.statement h2{font-size:clamp(3.1rem,5.9vw,6.5rem);letter-spacing:-.06em;line-height:1.05;max-width:900px;margin:0}.statement p{color:var(--muted);line-height:1.7;margin:0}.beer-photo{height:340px;overflow:hidden;border-bottom:1px solid var(--line)}.beer-photo img{width:100%;height:100%;object-fit:cover;object-position:center 53%;filter:brightness(.62) saturate(.65)}footer{padding:70px 0 30px}.footer-main{display:flex;justify-content:space-between;gap:30px;padding-bottom:75px}.footer-main p{max-width:390px;color:var(--muted);line-height:1.65;margin:24px 0 0}.footer-links{display:flex;gap:30px;text-transform:uppercase;letter-spacing:.15em;font-size:.77rem;font-weight:700}.footer-bottom{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:24px;color:#99958e;font-size:.79rem;line-height:1.6}.footer-bottom a{text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:850px){.wrap{width:calc(100% - 44px)}nav a:not(.nav-accent){display:none}.hero-copy,.scroll-hint,.sound-bar,.inside-ui{left:22px}.inside-ui{right:22px}.scene-status{right:22px}.section-header{grid-template-columns:1fr 240px}.card{grid-template-columns:55px 1fr}.statement .wrap{grid-template-columns:1fr 190px}}
+    @media(max-width:650px){.site-header .wrap{height:72px}.brand{font-size:.75rem;gap:8px}.brand-mark{width:34px;height:34px;font-size:1.25rem}.brand small{font-size:.52rem}.nav-accent{font-size:.67rem}.facade-image{object-position:56% center}.facade-scene::after{background:linear-gradient(0deg,rgba(0,0,0,.86),rgba(0,0,0,.12) 68%),linear-gradient(90deg,rgba(0,0,0,.15),transparent)}.hero-copy{bottom:100px;right:20px}.hero-copy h1{font-size:clamp(3.7rem,12.8vw,5.5rem);margin:22px 0 20px}.hero-copy p{font-size:1rem;line-height:1.55;margin-bottom:23px}.button{font-size:.72rem;min-height:48px;padding:0 13px}.scene-status{top:82px;font-size:.62rem;padding:8px}.sound-bar{top:82px;display:block;max-width:55%}.sound-status{display:block;margin-top:5px;font-size:.66rem}.sound-button{font-size:.67rem;padding:5px 0}.scroll-hint{bottom:24px;font-size:.68rem}.scroll-hint::before{height:25px}.inside-ui{bottom:25px;display:block}.inside-ui h2{font-size:2.65rem}.inside-ui p{font-size:.87rem}.concept-label{max-width:300px}.look-controls{margin-top:17px}.icon-button{width:43px;height:43px}.section{padding:80px 0}.section-header{display:block;margin-bottom:38px}.section-intro{margin-top:22px;max-width:460px}.card{grid-template-columns:40px 1fr;gap:15px;padding:25px 0}.card>div{display:block}.card p{margin-top:11px}.statement{padding:78px 0}.statement .wrap{display:block}.statement h2{font-size:clamp(3rem,10vw,4.8rem)}.statement p{margin-top:24px}.beer-photo{height:230px}.footer-main{display:block;padding-bottom:58px}.footer-links{margin-top:35px;flex-wrap:wrap}}
+    @media(max-width:380px){.hero-copy h1{font-size:3.5rem}.actions{gap:7px}.button{font-size:.67rem;padding-inline:10px}.scene-status{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.facade-image{will-change:auto}.interior-image{will-change:auto}}
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap">
-      <a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a>
-      <nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-cta" href="#contato">Conheça a casa</a></nav>
-    </div>
-  </header>
+  <a class="skip-link" href="#destaques">Pular experiência e ir para os destaques</a>
+  <header class="site-header"><div class="wrap"><a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a><nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-accent" href="#contato">Conheça a casa</a></nav></div></header>
   <main>
-    <section class="hero" id="inicio" aria-labelledby="hero-title">
-      <div class="wrap hero-content">
-        <div class="eyebrow">O encontro começa aqui</div>
-        <h1 id="hero-title">A vida acontece <em>na avenida.</em></h1>
-        <p class="lead">Cerveja gelada, bons encontros e aquele clima que faz você querer ficar mais um pouco.</p>
-        <a class="button" href="#destaques">Explore a experiência</a>
-      </div>
-      <span class="hero-caption">Na Avenida Beer · Brinde aos bons momentos</span>
-    </section>
-    <section class="section" id="destaques">
-      <div class="wrap">
-        <div class="section-header"><div><div class="eyebrow">O que faz a noite</div><h2>Seu lugar na avenida.</h2></div><p class="section-intro">Um espaço pensado para reunir a turma, brindar sem pressa e aproveitar cada momento.</p></div>
-        <div class="cards">
-          <article class="card"><span class="card-num">01 /</span><div><h3>Cerveja gelada</h3><p>O brinde certo para começar bem e deixar a conversa seguir.</p></div></article>
-          <article class="card"><span class="card-num">02 /</span><div><h3>Bons encontros</h3><p>Tem sempre um motivo para juntar os amigos na mesma mesa.</p></div></article>
-          <article class="card"><span class="card-num">03 /</span><div><h3>Clima de casa</h3><p>Um lugar para chegar, relaxar e aproveitar sem olhar para o relógio.</p></div></article>
-        </div>
+    <section class="journey" id="inicio" aria-label="Passeio visual pela Na Avenida Beer" data-scene="outside">
+      <div class="journey-sticky" id="journey-view">
+        <div class="scene facade-scene" aria-hidden="true"><img class="facade-image" id="facade-image" src="assets/fachada.webp" alt=""></div>
+        <div class="scene interior-scene" id="interior-scene"><div class="look-surface" id="look-surface" tabindex="0" role="group" aria-label="Vista conceitual do interior. Arraste para os lados ou use as setas para olhar."><img class="interior-image" id="interior-image" src="assets/interior-conceito.webp" alt="Vista conceitual provisória de um bar com madeira, iluminação quente e detalhes roxos" draggable="false"></div></div>
+        <div class="hero-copy" id="hero-copy"><div class="eyebrow">Bar e restaurante</div><h1>A vida acontece <em>na avenida.</em></h1><p>Da fachada ao clima da casa. Role para se aproximar da entrada e conhecer uma ideia provisória do interior.</p><div class="actions"><button class="button" id="enter-sound" type="button">Entrar com som</button><button class="button button-ghost" id="enter-quiet" type="button">Explorar sem som</button></div></div>
+        <div class="sound-bar"><button class="sound-button" id="mute-button" type="button" aria-pressed="true">Som desligado</button><span class="sound-status" id="sound-status" role="status" aria-live="polite"></span></div>
+        <span class="scene-status" id="scene-status">01 / Fachada</span><div class="scroll-hint" id="scroll-hint">Role para entrar · role de volta para sair</div>
+        <div class="inside-ui" id="inside-ui"><div><div class="eyebrow">Vista interna provisória</div><h2>Um olhar por dentro.</h2><p class="concept-label">Conceito visual fictício. Arraste para olhar para os lados; a vista tem ângulo limitado.</p></div><div class="look-controls"><button class="icon-button" id="look-left" type="button" aria-label="Olhar para a esquerda">←</button><button class="icon-button" id="look-right" type="button" aria-label="Olhar para a direita">→</button><button class="icon-button" id="back-outside" type="button" aria-label="Voltar para a fachada">↶</button></div></div>
+        <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
       </div>
     </section>
-    <section class="statement" id="sobre"><div class="wrap"><h2>Entre uma conversa e outra, nasce a melhor história.</h2><p>Na Avenida Beer. O próximo encontro já tem lugar.</p></div></section>
+    <section class="section" id="destaques"><div class="wrap"><div class="section-header"><div><div class="eyebrow">A experiência</div><h2>Seu lugar na avenida.</h2></div><p class="section-intro">Um espaço para reunir a turma, brindar sem pressa e aproveitar cada momento.</p></div><div class="cards"><article class="card"><span class="card-num">01 /</span><div><h3>Cerveja gelada</h3><p>O brinde certo para começar bem e deixar a conversa seguir.</p></div></article><article class="card"><span class="card-num">02 /</span><div><h3>Bons encontros</h3><p>Tem sempre um motivo para juntar os amigos na mesma mesa.</p></div></article><article class="card"><span class="card-num">03 /</span><div><h3>Clima de casa</h3><p>Um lugar para chegar, relaxar e aproveitar sem olhar para o relógio.</p></div></article></div></div></section>
+    <section class="statement" id="sobre"><div class="wrap"><h2>Entre uma conversa e outra, nasce a <em>melhor história.</em></h2><p>Na Avenida Beer. O próximo encontro já tem lugar.</p></div></section>
+    <div class="beer-photo" aria-hidden="true"><img src="hero.jpg" alt="" loading="lazy"></div>
   </main>
-  <footer id="contato"><div class="wrap"><div class="footer-main"><div><div class="brand"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></div><p>Em breve, mais informações sobre a casa, cardápio e contato por aqui.</p></div><div class="footer-links"><a href="#inicio">Início</a><a href="#destaques">Destaques</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Na Avenida Beer. </span><span>Foto: <a href="https://unsplash.com/photos/a-glass-of-amber-beer-with-white-foam-VCFtLJwYPe0" target="_blank" rel="noopener noreferrer">Aleksandr Isaev / Unsplash</a></span></div></div></footer>
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <footer id="contato"><div class="wrap"><div class="footer-main"><div><div class="brand"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></div><p>Em breve, mais informações sobre a casa, cardápio e contato por aqui.</p></div><div class="footer-links"><a href="#inicio">Início</a><a href="#destaques">Destaques</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Na Avenida Beer.</span><span>Interior ilustrativo, sujeito ao projeto definitivo. Foto da cerveja: <a href="https://unsplash.com/photos/a-glass-of-amber-beer-with-white-foam-VCFtLJwYPe0" target="_blank" rel="noopener noreferrer">Aleksandr Isaev / Unsplash</a></span></div></div></footer>
+  <audio id="ambient-audio" data-src="" loop preload="none"></audio>
+  <script src="experience.js" defer></script>
 </body>
 </html>
