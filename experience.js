@@ -2,6 +2,8 @@
   const $ = (id) => document.getElementById(id);
   const journey = $('inicio');
   const facade = $('facade-image');
+  const threshold = $('threshold-scene');
+  const thresholdImage = $('threshold-image');
   const interior = $('interior-scene');
   const interiorImage = $('interior-image');
   const lookSurface = $('look-surface');
@@ -44,16 +46,27 @@
     frame = 0;
     const range = Math.max(1, journey.offsetHeight - window.innerHeight);
     progress = clamp((window.scrollY - journey.offsetTop) / range, 0, 1);
-    const near = clamp(progress / .73, 0, 1);
-    const reveal = reducedMotion.matches ? Number(progress >= .64) : clamp((progress - .59) / .25, 0, 1);
-    facade.style.transform = reducedMotion.matches ? 'none' : `scale(${(1 + 1.75 * near).toFixed(3)})`;
-    interior.style.opacity = String(reveal);
-    copy.style.opacity = String(reducedMotion.matches ? Number(progress < .55) : 1 - clamp(progress / .28, 0, 1));
-    hint.style.opacity = String(reducedMotion.matches ? Number(progress < .55) : 1 - clamp(progress / .3, 0, 1));
+    const smooth = (from, to) => {
+      const t = clamp((progress - from) / (to - from), 0, 1);
+      return t * t * (3 - 2 * t);
+    };
+    // Each frame overlaps the next; rewinding scroll retraces precisely the same path.
+    const near = smooth(0, .65);
+    const approach = smooth(.35, .88);
+    const bridge = smooth(.34, .59) * (1 - smooth(.72, .92));
+    const reveal = smooth(.7, .95);
+    facade.style.transform = reducedMotion.matches ? 'none' : `scale(${(1 + 2.05 * near).toFixed(3)})`;
+    threshold.style.opacity = String(reducedMotion.matches ? 0 : bridge);
+    // The full facade has its doorway around 60% of the frame; the close view centers it.
+    const doorwayOffset = window.innerWidth > 650 ? .10 : 0;
+    thresholdImage.style.transform = reducedMotion.matches ? 'none' : `translate3d(${((1 - approach) * window.innerWidth * doorwayOffset).toFixed(1)}px,0,0) scale(${(1 + .42 * approach).toFixed(3)})`;
+    interior.style.opacity = String(reducedMotion.matches ? Number(progress >= .67) : reveal);
+    copy.style.opacity = String(reducedMotion.matches ? Number(progress < .55) : 1 - smooth(0, .28));
+    hint.style.opacity = String(reducedMotion.matches ? Number(progress < .55) : 1 - smooth(0, .3));
     copy.style.pointerEvents = progress < .2 ? 'auto' : 'none';
-    journey.dataset.scene = progress >= .78 ? 'inside' : 'outside';
-    lookSurface.tabIndex = progress >= .78 ? 0 : -1;
-    status.textContent = progress >= .78 ? '02 / Interior conceitual' : '01 / Fachada';
+    journey.dataset.scene = progress >= .9 ? 'inside' : 'outside';
+    lookSurface.tabIndex = progress >= .9 ? 0 : -1;
+    status.textContent = progress >= .9 ? '03 / Interior conceitual' : progress >= .46 ? '02 / Entrada' : '01 / Fachada';
     fill.style.width = `${(progress * 100).toFixed(1)}%`;
     updateVolume();
   }
