@@ -20,6 +20,13 @@
     @media(max-width:650px){.site-header .wrap{height:72px}.brand{font-size:.75rem;gap:8px}.brand-mark{width:34px;height:34px;font-size:1.25rem}.brand small{font-size:.52rem}.nav-accent{font-size:.67rem}.facade-image{object-position:56% center}.facade-scene::after{background:linear-gradient(0deg,rgba(0,0,0,.86),rgba(0,0,0,.12) 68%),linear-gradient(90deg,rgba(0,0,0,.15),transparent)}.hero-copy{bottom:100px;right:20px}.hero-copy h1{font-size:clamp(3.7rem,12.8vw,5.5rem);margin:22px 0 20px}.hero-copy p{font-size:1rem;line-height:1.55;margin-bottom:23px}.button{font-size:.72rem;min-height:48px;padding:0 13px}.scene-status{top:82px;font-size:.62rem;padding:8px}.sound-bar{top:82px;display:block;max-width:55%}.sound-status{display:block;margin-top:5px;font-size:.66rem}.sound-button{font-size:.67rem;padding:5px 0}.scroll-hint{bottom:24px;font-size:.68rem}.scroll-hint::before{height:25px}.inside-ui{bottom:25px;display:block}.inside-ui h2{font-size:2.65rem}.inside-ui p{font-size:.87rem}.concept-label{max-width:300px}.look-controls{margin-top:17px}.icon-button{width:43px;height:43px}.section{padding:80px 0}.section-header{display:block;margin-bottom:38px}.section-intro{margin-top:22px;max-width:460px}.card{grid-template-columns:40px 1fr;gap:15px;padding:25px 0}.card>div{display:block}.card p{margin-top:11px}.statement{padding:78px 0}.statement .wrap{display:block}.statement h2{font-size:clamp(3rem,10vw,4.8rem)}.statement p{margin-top:24px}.beer-photo{height:230px}.footer-main{display:block;padding-bottom:58px}.footer-links{margin-top:35px;flex-wrap:wrap}}
     @media(max-width:380px){.hero-copy h1{font-size:3.5rem}.actions{gap:7px}.button{font-size:.67rem;padding-inline:10px}.scene-status{display:none}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}.facade-image{will-change:auto}.interior-image{will-change:auto}}
+
+    /* Image bridge at the entry. Replace the provisional image when approved frames arrive. */
+    .threshold-scene{z-index:2;opacity:0;pointer-events:none;background:#090807}
+    .threshold-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform-origin:50% 54%;will-change:transform}
+    .threshold-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.48),transparent 36%),linear-gradient(180deg,rgba(0,0,0,.38),transparent 32%);pointer-events:none}
+    .interior-scene{z-index:3}
+    @media(prefers-reduced-motion:reduce){.threshold-image{will-change:auto}}
   </style>
 </head>
 <body>
@@ -29,6 +36,7 @@
     <section class="journey" id="inicio" aria-label="Passeio visual pela Na Avenida Beer" data-scene="outside">
       <div class="journey-sticky" id="journey-view">
         <div class="scene facade-scene" aria-hidden="true"><img class="facade-image" id="facade-image" src="assets/fachada.webp" alt=""></div>
+        <div class="scene threshold-scene" id="threshold-scene" aria-hidden="true"><img class="threshold-image" id="threshold-image" src="assets/entrada-conceito.webp" alt=""></div>
         <div class="scene interior-scene" id="interior-scene"><div class="look-surface" id="look-surface" tabindex="0" role="group" aria-label="Vista conceitual do interior. Arraste para os lados ou use as setas para olhar."><img class="interior-image" id="interior-image" src="assets/interior-conceito.webp" alt="Vista conceitual provisória de um bar com madeira, iluminação quente e detalhes roxos" draggable="false"></div></div>
         <div class="hero-copy" id="hero-copy"><div class="eyebrow">Bar e restaurante</div><h1>A vida acontece <em>na avenida.</em></h1><p>Da fachada ao clima da casa. Role para se aproximar da entrada e conhecer uma ideia provisória do interior.</p><div class="actions"><button class="button" id="enter-sound" type="button">Entrar com som</button><button class="button button-ghost" id="enter-quiet" type="button">Explorar sem som</button></div></div>
         <div class="sound-bar"><button class="sound-button" id="mute-button" type="button" aria-pressed="true">Som desligado</button><span class="sound-status" id="sound-status" role="status" aria-live="polite"></span></div>
