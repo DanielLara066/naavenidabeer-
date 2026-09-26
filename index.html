@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#17120d">
-  <meta name="description" content="Na Avenida Beer — um primeiro esboço para apresentar a marca, o clima da casa e seus destaques.">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="Na Avenida Beer — cerveja gelada, bons encontros e uma noite para aproveitar sem pressa.">
   <title>Na Avenida Beer | Seu ponto de encontro</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317120d'/%3E%3Cpath d='M19 15h26l-3 34H22z' fill='%23e9a632'/%3E%3Cpath d='M18 14h28v8H18z' fill='%23fff7e5'/%3E%3C/svg%3E">
   <style>
@@ -57,12 +57,60 @@
     @media(max-width:800px) { nav a:not(.nav-cta) {display:none} .hero {min-height:740px} .hero::before {background-image:linear-gradient(90deg,rgba(14,11,8,.92),rgba(14,11,8,.48)),url('hero.jpg');background-position:center,60% center} .cards {grid-template-columns:1fr} .card {min-height:210px} .section-header,.statement .wrap,.footer-main {display:block} .section-intro {margin-top:25px} .statement p {margin-top:25px} .footer-links {margin-top:30px;flex-wrap:wrap} }
     @media(max-width:520px) { .wrap {width:min(100% - 32px,1180px)} header .wrap {min-height:76px} .brand {font-size:.82rem}.brand-mark{font-size:1.7rem}.brand small{font-size:.5rem} .nav-cta{font-size:.69rem;padding:11px} .hero {min-height:690px} .hero-content{padding-block:140px 100px} h1{font-size:clamp(3.9rem,18vw,5.8rem)} .hero-caption{display:none} .section{padding:75px 0} .statement{padding:65px 0} }
     @media(prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .button{transition:none} }
+    /* Editorial dark direction */
+    :root { --ink:#080808; --cream:#f5f2ed; --amber:#d0af79; --muted:#aaa7a1; }
+    body { background:#080808; color:var(--cream); -webkit-font-smoothing:antialiased; }
+    a:focus-visible { outline:2px solid var(--amber); outline-offset:5px; }
+    .wrap { width:min(1240px,calc(100% - 80px)); }
+    header { position:relative; background:#080808; border-color:#33312d; }
+    header .wrap { min-height:96px; }
+    .brand { letter-spacing:.13em; font-weight:800; }
+    .brand small { color:var(--amber); font-weight:500; }
+    .brand-mark { display:grid; place-items:center; width:42px; height:42px; border:1px solid var(--amber); font-family:Georgia,serif; font-size:1.6rem; font-weight:400; line-height:1; transform:none; padding-right:3px; }
+    nav { font-size:.77rem; letter-spacing:.17em; }
+    .nav-cta { border:0; border-bottom:1px solid var(--amber); padding:10px 0; }
+    .hero { min-height:690px; display:grid; grid-template-columns:52% 48%; border-bottom:1px solid #33312d; background:#080808; }
+    .hero::before { inset:0 0 0 52%; background-image:linear-gradient(0deg,rgba(0,0,0,.48),transparent 45%),url('hero.jpg'); background-position:center,center; background-size:cover; filter:brightness(.68) saturate(.65); }
+    .hero::after { display:none; }
+    .hero-content { width:auto; max-width:none; margin:0; padding:95px 5.5vw 110px max(40px,calc((100vw - 1240px)/2)); align-self:center; }
+    .eyebrow { font-size:.73rem; letter-spacing:.28em; }
+    .eyebrow::before { height:1px; width:30px; }
+    h1,h2,h3 { font-weight:400!important; }
+    h1 { font-size:clamp(4.4rem,7.2vw,8.1rem); line-height:.97; max-width:710px; margin:34px 0 32px; }
+    h1 em { font-style:italic; font-weight:400; }
+    .lead { max-width:440px; color:#c7c3bc; font-size:1.12rem; line-height:1.7; margin-bottom:40px; }
+    .button { background:transparent; border:1px solid var(--amber); color:var(--amber); gap:28px; min-height:55px; font-size:.78rem; letter-spacing:.14em; }
+    .button::after { content:'↗'; font-size:1.2rem; font-weight:400; }
+    .button:hover { background:var(--amber); color:#080808; transform:none; }
+    .hero-caption { right:max(30px,calc((100vw - 1240px)/2)); bottom:35px; font-weight:400; }
+    .section { padding:120px 0 125px; }
+    .section-header { display:grid; grid-template-columns:1fr 310px; align-items:end; gap:40px; margin-bottom:63px; }
+    .section h2 { font-size:clamp(3.3rem,5.6vw,6.2rem); max-width:780px; margin-top:22px; }
+    .section-intro { line-height:1.75; margin-bottom:6px; }
+    .cards { display:block; border-top:1px solid #33312d; }
+    .card { display:grid; grid-template-columns:80px minmax(220px,.8fr) 1fr; align-items:center; gap:24px; min-height:148px; padding:28px 8px; border:0; border-bottom:1px solid #33312d; background:transparent; }
+    .card > div { grid-column:2 / 4; display:grid; grid-template-columns:minmax(220px,.8fr) 1fr; align-items:center; gap:24px; }
+    .card-num { align-self:start; padding-top:15px; }
+    .card h3 { font-size:clamp(2rem,3vw,3rem); margin:0; }
+    .card p { max-width:420px; font-size:1rem; line-height:1.65; }
+    .statement { background:#111110; color:var(--cream); border-block:1px solid #33312d; padding:110px 0; }
+    .statement .wrap { display:grid; grid-template-columns:1fr 250px; align-items:end; gap:50px; }
+    .statement h2 { max-width:870px; font-size:clamp(3.2rem,6vw,6.8rem); line-height:1.04; }
+    .statement p { color:var(--muted); font-weight:400; margin-bottom:8px; }
+    footer { padding:70px 0 30px; }
+    .footer-main { padding-bottom:88px; }
+    .footer-main p { font-size:1rem; }
+    .footer-bottom { border-color:#33312d; color:#8d8982; line-height:1.6; }
+    .footer-bottom a { text-decoration:underline; text-underline-offset:3px; }
+    @media(max-width:900px) { .wrap{width:min(100% - 48px,1240px)} .hero{grid-template-columns:55% 45%;min-height:620px} .hero::before{left:55%} .hero-content{padding:80px 35px 90px 24px} h1{font-size:clamp(4rem,8vw,6rem)} .section-header{grid-template-columns:1fr 240px} .card{grid-template-columns:55px 1fr 1fr}.card > div{grid-template-columns:1fr 1fr} .statement .wrap{grid-template-columns:1fr 200px} }
+    @media(max-width:680px) { header .wrap{min-height:76px} nav a:not(.nav-cta){display:none} .nav-cta{font-size:.66rem} .brand{font-size:.77rem;gap:9px} .brand-mark{width:36px;height:36px;font-size:1.35rem} .brand small{font-size:.54rem} .hero{display:flex;flex-direction:column;min-height:0;padding-top:340px} .hero::before{inset:0 0 auto;height:340px;background-image:linear-gradient(0deg,rgba(0,0,0,.5),transparent 45%),url('hero.jpg');background-position:center;filter:brightness(.68) saturate(.65)} .hero-content{padding:55px 24px 78px} h1{font-size:clamp(3.8rem,12vw,6rem);margin:25px 0} .lead{font-size:1rem;margin-bottom:30px} .hero-caption{display:none} .section{padding:84px 0} .section-header{display:block;margin-bottom:39px} .section-intro{margin-top:24px;max-width:450px} .card{grid-template-columns:42px 1fr;gap:10px 16px;min-height:0;padding:29px 0} .card-num{grid-row:span 2;padding-top:7px} .card > div{grid-column:2;display:block}.card h3{grid-column:auto}.card p{grid-column:auto;margin-top:10px} .statement{padding:80px 0} .statement .wrap{display:block} .statement p{max-width:320px;margin-top:30px} .footer-main{display:block;padding-bottom:64px} .footer-links{margin-top:38px;flex-wrap:wrap} }
+    @media(max-width:420px) { .wrap{width:calc(100% - 36px)} .hero-content{padding-inline:18px} h1{font-size:clamp(3.65rem,13.2vw,4.5rem)} .section h2,.statement h2{font-size:3.1rem} }
   </style>
 </head>
 <body>
   <header>
     <div class="wrap">
-      <a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">✦</span><span>Na Avenida<small>Beer</small></span></a>
+      <a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a>
       <nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-cta" href="#contato">Conheça a casa</a></nav>
     </div>
   </header>
@@ -88,7 +136,7 @@
     </section>
     <section class="statement" id="sobre"><div class="wrap"><h2>Entre uma conversa e outra, nasce a melhor história.</h2><p>Na Avenida Beer. O próximo encontro já tem lugar.</p></div></section>
   </main>
-  <footer id="contato"><div class="wrap"><div class="footer-main"><div><div class="brand"><span class="brand-mark" aria-hidden="true">✦</span><span>Na Avenida<small>Beer</small></span></div><p>Em breve, mais informações sobre a casa, cardápio e contato por aqui.</p></div><div class="footer-links"><a href="#inicio">Início</a><a href="#destaques">Destaques</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Na Avenida Beer. Esboço inicial.</span><span>Foto: <a href="https://unsplash.com/photos/a-glass-of-amber-beer-with-white-foam-VCFtLJwYPe0" target="_blank" rel="noopener noreferrer">Aleksandr Isaev / Unsplash</a></span></div></div></footer>
+  <footer id="contato"><div class="wrap"><div class="footer-main"><div><div class="brand"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></div><p>Em breve, mais informações sobre a casa, cardápio e contato por aqui.</p></div><div class="footer-links"><a href="#inicio">Início</a><a href="#destaques">Destaques</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Na Avenida Beer. </span><span>Foto: <a href="https://unsplash.com/photos/a-glass-of-amber-beer-with-white-foam-VCFtLJwYPe0" target="_blank" rel="noopener noreferrer">Aleksandr Isaev / Unsplash</a></span></div></div></footer>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
