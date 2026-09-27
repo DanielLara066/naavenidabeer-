@@ -1,0 +1,17 @@
+name: Transfer exterior frames
+on:
+  push:
+    paths:
+      - .github/workflows/transfer-exterior.yml
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: na-avenida-exterior
+          path: assets/externa-*.png
+          compression-level: 0
