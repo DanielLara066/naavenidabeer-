@@ -7,8 +7,6 @@
   const interior = $('interior-scene');
   const interiorImage = $('interior-image');
   const lookSurface = $('look-surface');
-  const copy = $('hero-copy');
-  const hint = $('scroll-hint');
   const status = $('scene-status');
   const fill = $('progress-fill');
   const soundStatus = $('sound-status');
@@ -61,9 +59,6 @@
     const doorwayOffset = window.innerWidth > 650 ? .10 : 0;
     thresholdImage.style.transform = reducedMotion.matches ? 'none' : `translate3d(${((1 - approach) * window.innerWidth * doorwayOffset).toFixed(1)}px,0,0) scale(${(1 + .42 * approach).toFixed(3)})`;
     interior.style.opacity = String(reducedMotion.matches ? Number(progress >= .67) : reveal);
-    copy.style.opacity = String(reducedMotion.matches ? Number(progress < .55) : 1 - smooth(0, .28));
-    hint.style.opacity = String(reducedMotion.matches ? Number(progress < .55) : 1 - smooth(0, .3));
-    copy.style.pointerEvents = progress < .2 ? 'auto' : 'none';
     journey.dataset.scene = progress >= .9 ? 'inside' : 'outside';
     lookSurface.tabIndex = progress >= .9 ? 0 : -1;
     status.textContent = progress >= .9 ? '03 / Interior conceitual' : progress >= .46 ? '02 / Entrada' : '01 / Fachada';
@@ -79,23 +74,11 @@
     const range = Math.max(1, journey.offsetHeight - window.innerHeight);
     scrollTo({top: journey.offsetTop + range * fraction, behavior: reducedMotion.matches ? 'instant' : 'smooth'});
   }
-  $('enter-quiet').addEventListener('click', () => goTo(.9));
   $('back-outside').addEventListener('click', () => goTo(0));
-  $('enter-sound').addEventListener('click', async () => {
-    goTo(.9);
-    if (!audioSource) { soundStatus.textContent = 'Trilha ainda não adicionada; visita sem som'; return; }
-    soundEnabled = true;
-    muted = false;
-    audio.muted = false;
-    updateVolume();
-    try { await audio.play(); soundStatus.textContent = 'Som suave ativo'; }
-    catch { soundEnabled = false; muted = true; soundStatus.textContent = 'Não foi possível iniciar o áudio'; }
-    syncMute();
-  });
   function syncMute() {
     audio.muted = muted;
-    muteButton.textContent = muted ? 'Som desligado' : 'Silenciar';
-    muteButton.setAttribute('aria-pressed', String(muted));
+    muteButton.setAttribute('aria-label', muted ? 'Ativar som' : 'Silenciar');
+    muteButton.setAttribute('aria-pressed', String(!muted));
     updateVolume();
   }
   muteButton.addEventListener('click', async () => {
@@ -128,5 +111,5 @@
     if (event.key === 'ArrowLeft') {event.preventDefault();pan += 110;drawPan()}
     if (event.key === 'ArrowRight') {event.preventDefault();pan -= 110;drawPan()}
   });
-  drawPan(); render();
+  syncMute(); drawPan(); render();
 })();

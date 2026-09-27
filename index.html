@@ -27,21 +27,34 @@
     .threshold-scene::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.48),transparent 36%),linear-gradient(180deg,rgba(0,0,0,.38),transparent 32%);pointer-events:none}
     .interior-scene{z-index:3}
     @media(prefers-reduced-motion:reduce){.threshold-image{will-change:auto}}
+    /* Keep the photographic journey free of HTML copy. Navigation lives in an opaque bar above it. */
+    .site-header{position:sticky;top:0;background:#080808;border-bottom:1px solid #29251e}
+    .site-header .wrap{height:72px}
+    .facade-scene::after,.threshold-scene::after,.interior-scene::after{display:none}
+    .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+    .sound-button{width:42px;height:42px;display:grid;place-items:center;flex:none;padding:0;border:1px solid #544630;border-radius:50%;background:#181512;color:var(--gold)}
+    .sound-button:hover{border-color:var(--gold);background:#252018}
+    .sound-button svg,.icon-button svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+    .sound-button[aria-pressed="true"] .sound-slash,.sound-button[aria-pressed="false"] .sound-wave{display:none}
+    .inside-ui{left:auto;right:24px;bottom:24px;display:block}
+    .look-controls{display:flex;gap:8px}
+    .icon-button{display:grid;place-items:center;width:44px;height:44px;border-color:rgba(208,175,121,.65);border-radius:50%;background:rgba(8,8,8,.52);color:var(--white);backdrop-filter:blur(6px)}
+    @media(max-width:850px){.inside-ui{left:auto;right:22px}}
+    @media(max-width:650px){.site-header .wrap{height:64px}nav{gap:12px}.nav-accent{font-size:.62rem}.inside-ui{left:auto;right:16px;bottom:18px;display:block}.look-controls{margin:0}.icon-button{width:42px;height:42px}.sound-button{width:38px;height:38px}.sound-button svg{width:19px;height:19px}}
+    @media(max-width:380px){.brand{font-size:.68rem;gap:6px}.brand-mark{width:30px;height:30px}.nav-accent{font-size:.57rem;letter-spacing:.07em}nav{gap:8px}}
   </style>
 </head>
 <body>
   <a class="skip-link" href="#destaques">Pular experiência e ir para os destaques</a>
-  <header class="site-header"><div class="wrap"><a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a><nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-accent" href="#contato">Conheça a casa</a></nav></div></header>
+  <header class="site-header"><div class="wrap"><a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a><nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-accent" href="#contato">Conheça a casa</a><button class="sound-button" id="mute-button" type="button" aria-label="Ativar som" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/><path class="sound-slash" d="M3 3l18 18"/></svg></button></nav></div></header>
   <main>
     <section class="journey" id="inicio" aria-label="Passeio visual pela Na Avenida Beer" data-scene="outside">
       <div class="journey-sticky" id="journey-view">
         <div class="scene facade-scene" aria-hidden="true"><img class="facade-image" id="facade-image" src="assets/fachada-final.png" alt=""></div>
         <div class="scene threshold-scene" id="threshold-scene" aria-hidden="true"><img class="threshold-image" id="threshold-image" src="assets/entrada-final.png" alt=""></div>
         <div class="scene interior-scene" id="interior-scene"><div class="look-surface" id="look-surface" tabindex="0" role="group" aria-label="Vista conceitual do interior. Arraste para os lados ou use as setas para olhar."><img class="interior-image" id="interior-image" src="assets/interior-conceito.webp" alt="Vista conceitual provisória de um bar com madeira, iluminação quente e detalhes roxos" draggable="false"></div></div>
-        <div class="hero-copy" id="hero-copy"><div class="eyebrow">Bar e restaurante</div><h1>A vida acontece <em>na avenida.</em></h1><p>Da fachada ao clima da casa. Role para se aproximar da entrada e conhecer uma ideia provisória do interior.</p><div class="actions"><button class="button" id="enter-sound" type="button">Entrar com som</button><button class="button button-ghost" id="enter-quiet" type="button">Explorar sem som</button></div></div>
-        <div class="sound-bar"><button class="sound-button" id="mute-button" type="button" aria-pressed="true">Som desligado</button><span class="sound-status" id="sound-status" role="status" aria-live="polite"></span></div>
-        <span class="scene-status" id="scene-status">01 / Fachada</span><div class="scroll-hint" id="scroll-hint">Role para entrar · role de volta para sair</div>
-        <div class="inside-ui" id="inside-ui"><div><div class="eyebrow">Vista interna provisória</div><h2>Um olhar por dentro.</h2><p class="concept-label">Conceito visual fictício. Arraste para olhar para os lados; a vista tem ângulo limitado.</p></div><div class="look-controls"><button class="icon-button" id="look-left" type="button" aria-label="Olhar para a esquerda">←</button><button class="icon-button" id="look-right" type="button" aria-label="Olhar para a direita">→</button><button class="icon-button" id="back-outside" type="button" aria-label="Voltar para a fachada">↶</button></div></div>
+        <span class="sr-only" id="scene-status" role="status" aria-live="polite">01 / Fachada</span>
+        <div class="inside-ui" id="inside-ui"><div class="look-controls"><button class="icon-button" id="look-left" type="button" aria-label="Olhar para a esquerda"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7M7 12h13"/></svg></button><button class="icon-button" id="look-right" type="button" aria-label="Olhar para a direita"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7M17 12H4"/></svg></button><button class="icon-button" id="back-outside" type="button" aria-label="Voltar para a fachada"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7H4V3M4 7a9 9 0 1 1-1 7M4 7l5 5"/></svg></button></div></div>
         <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
       </div>
     </section>
@@ -51,6 +64,7 @@
   </main>
   <footer id="contato"><div class="wrap"><div class="footer-main"><div><div class="brand"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></div><p>Em breve, mais informações sobre a casa, cardápio e contato por aqui.</p></div><div class="footer-links"><a href="#inicio">Início</a><a href="#destaques">Destaques</a></div></div><div class="footer-bottom"><span>© <span id="year"></span> Na Avenida Beer.</span><span>Interior ilustrativo, sujeito ao projeto definitivo. Foto da cerveja: <a href="https://unsplash.com/photos/a-glass-of-amber-beer-with-white-foam-VCFtLJwYPe0" target="_blank" rel="noopener noreferrer">Aleksandr Isaev / Unsplash</a></span></div></div></footer>
   <audio id="ambient-audio" data-src="" loop preload="none"></audio>
+  <span class="sr-only" id="sound-status" role="status" aria-live="polite"></span>
   <script src="experience.js" defer></script>
 </body>
 </html>

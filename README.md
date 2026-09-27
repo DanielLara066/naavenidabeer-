@@ -2,6 +2,8 @@
 
 Página estática responsiva. A rolagem aproxima a fachada e revela um conceito fictício do interior. A vista interna permite olhar para os lados dentro de um ângulo limitado; **não é um panorama 360° nem representação do projeto arquitetônico definitivo**.
 
+O banner de passeio mostra somente as fotografias, controles discretos de ícone e a barra de progresso. A navegação com texto fica na faixa preta acima da imagem. Os ícones e o estado da cena mantêm rótulos acessíveis para leitores de tela.
+
 ## Trocar os materiais
 
 - `dist/assets/fachada-final.png`: fachada completa enviada para esta sequência, preservada em PNG sem conversão. A entrada está próxima de 60% da largura; se trocar a foto, ajuste `transform-origin` da classe `.facade-image` em `dist/index.html`.
