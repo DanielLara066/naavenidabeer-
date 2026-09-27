@@ -7,7 +7,7 @@
   <meta name="description" content="Explore a fachada da Na Avenida Beer e uma vista conceitual provisória do interior.">
   <title>Na Avenida Beer | Explore o espaço</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23080808'/%3E%3Cpath d='M17 44V20h5l20 17V20h5v24h-5L22 27v17z' fill='%23d0af79'/%3E%3C/svg%3E">
-  <link rel="preload" href="assets/externa-01.png" as="image">
+  <link rel="preload" href="assets/fachada-final.png" as="image">
   <style>
     :root{color-scheme:dark;--black:#080808;--panel:#111110;--line:#38352f;--white:#f5f2ed;--muted:#b5b1aa;--gold:#d0af79}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible,.look-surface:focus-visible{outline:2px solid var(--gold);outline-offset:4px}.wrap{width:min(1240px,calc(100% - 64px));margin-inline:auto}
@@ -43,7 +43,8 @@
     @media(max-width:650px){.site-header .wrap{height:64px}nav{gap:12px}.nav-accent{font-size:.62rem}.inside-ui{left:auto;right:16px;bottom:18px;display:block}.look-controls{margin:0}.icon-button{width:42px;height:42px}.sound-button{width:38px;height:38px}.sound-button svg{width:19px;height:19px}}
     @media(max-width:380px){.brand{font-size:.68rem;gap:6px}.brand-mark{width:30px;height:30px}.nav-accent{font-size:.57rem;letter-spacing:.07em}nav{gap:8px}}
     /* Exterior storyboard fills the journey viewport without stretching; portrait screens crop its sides toward the door. */
-    .journey{height:980svh}
+    .journey{height:560svh}
+    .journey[data-mode="storyboard"]{height:980svh}
     .sequence-scene{z-index:1;background:#090807}
     .sequence-scene .look-surface{inset:0;cursor:default;pointer-events:none}
     .journey[data-scene="inside"] .sequence-scene .look-surface{pointer-events:auto;cursor:grab}
@@ -54,7 +55,12 @@
     .frame-backdrop{position:absolute;inset:-30px;width:calc(100% + 60px);height:calc(100% + 60px);object-fit:cover;filter:blur(26px) brightness(.25) saturate(.7);pointer-events:none}
     .frame-image{position:relative;display:block;width:min(100%,var(--display-w));max-height:calc(100% - 24px);height:auto;object-fit:contain;pointer-events:none;user-select:none}
     .exterior-frame .frame-image{width:100%;height:100%;max-height:none;object-fit:cover;object-position:var(--focus-x) 50%}
-    .exterior-frame .frame-backdrop{display:none}
+    .exterior-frame .frame-backdrop,.hd-frame .frame-backdrop{display:none}
+    .hd-frame .frame-image{width:100%;height:100%;max-height:none;object-fit:cover;object-position:center}
+    .hd-frame[data-stage="Fachada"] .frame-image{object-position:60% center;transform-origin:60% 55%}
+    .hd-frame[data-stage="Entrada"] .frame-image{transform-origin:50% 55%}
+    .journey[data-mode="hd"] .exterior-frame,.journey[data-mode="storyboard"] .hd-frame{display:none}
+    @media(prefers-reduced-motion:reduce){.hd-frame .frame-image{transform:none!important}}
     .icon-button:disabled{opacity:.38;cursor:default}
     @media(prefers-reduced-motion:reduce){.sequence-frame{will-change:auto}.frame-backdrop{filter:blur(18px) brightness(.22)}}
   </style>
@@ -63,9 +69,11 @@
   <a class="skip-link" href="#destaques">Pular experiência e ir para os destaques</a>
   <header class="site-header"><div class="wrap"><a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a><nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-accent" href="#contato">Conheça a casa</a><button class="sound-button" id="mute-button" type="button" aria-label="Ativar som" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/><path class="sound-slash" d="M3 3l18 18"/></svg></button></nav></div></header>
   <main>
-    <section class="journey" id="inicio" aria-label="Passeio visual pela Na Avenida Beer" data-scene="outside">
+    <section class="journey" id="inicio" aria-label="Passeio visual pela Na Avenida Beer" data-scene="outside" data-mode="hd">
       <div class="journey-sticky" id="journey-view">
-        <div class="scene sequence-scene"><div class="look-surface" id="look-surface" tabindex="-1" role="group" aria-label="Passeio visual ilustrativo. Role para percorrer 34 cenas; ao final, arraste para rever as quatro vistas internas.">
+        <div class="scene sequence-scene"><div class="look-surface" id="look-surface" tabindex="-1" role="group" aria-label="Passeio visual ilustrativo. Role para percorrer as imagens; ao final, arraste para rever as quatro vistas internas.">
+          <div class="sequence-frame hd-frame" data-stage="Fachada"><img class="frame-backdrop" src="assets/fachada-final.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/fachada-final.png" alt="Fachada noturna da Na Avenida Beer, vista da rua" draggable="false"></div>
+          <div class="sequence-frame hd-frame" data-stage="Entrada"><img class="frame-backdrop" src="assets/entrada-final.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/entrada-final.png" alt="Entrada aberta da Na Avenida Beer, com o salão à frente" draggable="false"></div>
           <div class="sequence-frame exterior-frame" style="--focus-x:58%" data-stage="Fachada"><img class="frame-backdrop" src="assets/externa-01.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/externa-01.png" alt="Cena 01 de 30: Fachada noturna e aproximação da entrada" draggable="false"></div>
           <div class="sequence-frame exterior-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-backdrop" src="assets/externa-02.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/externa-02.png" alt="Cena 02 de 30: Fachada noturna e aproximação da entrada" draggable="false"></div>
           <div class="sequence-frame exterior-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-backdrop" src="assets/externa-03.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/externa-03.png" alt="Cena 03 de 30: Fachada noturna e aproximação da entrada" draggable="false"></div>
@@ -96,10 +104,10 @@
           <div class="sequence-frame exterior-frame" style="--focus-x:50%" data-stage="Passagem"><img class="frame-backdrop" src="assets/externa-28.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/externa-28.png" alt="Cena 28 de 30: Aproximação da porta e passagem para o salão" draggable="false"></div>
           <div class="sequence-frame exterior-frame" style="--focus-x:50%" data-stage="Passagem"><img class="frame-backdrop" src="assets/externa-29.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/externa-29.png" alt="Cena 29 de 30: Aproximação da porta e passagem para o salão" draggable="false"></div>
           <div class="sequence-frame exterior-frame" style="--focus-x:50%" data-stage="Passagem"><img class="frame-backdrop" src="assets/externa-30.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/externa-30.png" alt="Cena 30 de 30: Aproximação da porta e passagem para o salão" draggable="false"></div>
-          <div class="sequence-frame" style="--display-w:770px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-05.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-05.png" alt="Primeira vista lateral das mesas e do balcão" draggable="false"></div>
-          <div class="sequence-frame" style="--display-w:756px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-06.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-06.png" alt="Vista lateral seguinte do balcão e das mesas" draggable="false"></div>
-          <div class="sequence-frame" style="--display-w:590px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-07.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-07.png" alt="Vista lateral das mesas e dos quadros na parede" draggable="false"></div>
-          <div class="sequence-frame" style="--display-w:920px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-08.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-08.png" alt="Vista final mais ampla do salão, com mesas, balcão e espelho" draggable="false"></div>
+          <div class="sequence-frame interior-frame" style="--display-w:770px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-05.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-05.png" alt="Primeira vista lateral das mesas e do balcão" draggable="false"></div>
+          <div class="sequence-frame interior-frame" style="--display-w:756px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-06.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-06.png" alt="Vista lateral seguinte do balcão e das mesas" draggable="false"></div>
+          <div class="sequence-frame interior-frame" style="--display-w:590px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-07.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-07.png" alt="Vista lateral das mesas e dos quadros na parede" draggable="false"></div>
+          <div class="sequence-frame interior-frame" style="--display-w:920px" data-stage="Salão"><img class="frame-backdrop" src="assets/cena-08.png" alt="" aria-hidden="true"><img class="frame-image" src="assets/cena-08.png" alt="Vista final mais ampla do salão, com mesas, balcão e espelho" draggable="false"></div>
         </div></div>
         <span class="sr-only" id="scene-status" role="status" aria-live="polite">01 / Fachada</span>
         <div class="inside-ui" id="inside-ui"><div class="look-controls"><button class="icon-button" id="look-left" type="button" aria-label="Olhar para a esquerda"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 5-7 7 7 7M7 12h13"/></svg></button><button class="icon-button" id="look-right" type="button" aria-label="Olhar para a direita"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 5 7 7-7 7M17 12H4"/></svg></button><button class="icon-button" id="back-outside" type="button" aria-label="Voltar para a fachada"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 7H4V3M4 7a9 9 0 1 1-1 7M4 7l5 5"/></svg></button></div></div>

@@ -1,7 +1,9 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const journey = $('inicio');
-  const frames = [...document.querySelectorAll('.sequence-frame')];
+  const storyboard = new URLSearchParams(location.search).get('modo') === 'quadros';
+  journey.dataset.mode = storyboard ? 'storyboard' : 'hd';
+  const frames = [...document.querySelectorAll(storyboard ? '.exterior-frame, .interior-frame' : '.hd-frame, .interior-frame')];
   const lookSurface = $('look-surface');
   const lookLeft = $('look-left');
   const lookRight = $('look-right');
@@ -25,7 +27,10 @@
   else soundStatus.textContent = 'Trilha ainda não adicionada';
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  const interiorStart = 30; // The four earlier interior views follow the new 30-frame approach.
+  const interiorStart = storyboard ? 30 : 2;
+  lookSurface.setAttribute('aria-label', storyboard
+    ? 'Passeio ilustrativo em 30 quadros externos e quatro vistas internas. Role; ao final, arraste para olhar ao redor.'
+    : 'Passeio ilustrativo com fotos da fachada, da entrada e quatro vistas internas. Role; ao final, arraste para olhar ao redor.');
   const mainImages = frames.map((item) => item.querySelector('.frame-image'));
   const ready = mainImages.map((img) => img.complete && img.naturalWidth > 0);
   mainImages.forEach((img, i) => {
@@ -51,17 +56,28 @@
     const range = Math.max(1, journey.offsetHeight - window.innerHeight);
     progress = clamp((window.scrollY - journey.offsetTop) / range, 0, 1);
     // Native scroll controls the photographic order, and reverse scroll retraces it.
-    const outsideEnd = .74;
-    const insideEnd = .93;
+    const outsideEnd = storyboard ? .74 : .72;
+    const insideEnd = storyboard ? .93 : .92;
     const inside = progress >= insideEnd;
     if (!inside) lookFrame = frames.length - 1;
-    const position = inside ? lookFrame : progress < outsideEnd
-      ? (progress / outsideEnd) * (interiorStart - 1)
-      : (interiorStart - 1) + (progress - outsideEnd) / (insideEnd - outsideEnd) * (frames.length - interiorStart);
+    const position = inside ? lookFrame : storyboard
+      ? progress < outsideEnd
+        ? (progress / outsideEnd) * (interiorStart - 1)
+        : (interiorStart - 1) + (progress - outsideEnd) / (insideEnd - outsideEnd) * (frames.length - interiorStart)
+      : progress < .34 ? 0
+        : progress < .48 ? (progress - .34) / .14
+        : progress < outsideEnd ? 1
+        : 1 + (progress - outsideEnd) / (insideEnd - outsideEnd) * (frames.length - interiorStart);
+    if (!storyboard) {
+      const facadeScale = 1 + clamp(progress / .48, 0, 1) * .85;
+      const entryScale = 1.12 + clamp((progress - .34) / .38, 0, 1) * .58;
+      frames[0].querySelector('.frame-image').style.transform = `scale(${facadeScale.toFixed(3)})`;
+      frames[1].querySelector('.frame-image').style.transform = `scale(${entryScale.toFixed(3)})`;
+    }
     const shown = reducedMotion.matches ? Math.round(position) : position;
     const index = Math.min(frames.length - 1, Math.floor(shown));
     const phase = shown - index;
-    const t = clamp((phase - .68) / .32, 0, 1);
+    const t = storyboard ? clamp((phase - .68) / .32, 0, 1) : clamp(phase, 0, 1);
     const fade = t * t * (3 - 2 * t);
     const availableIndex = ready[index] ? index : ready.findLastIndex((value, i) => value && i <= index);
     const base = availableIndex < 0 ? 0 : availableIndex;

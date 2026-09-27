@@ -1,17 +1,16 @@
 # Na Avenida Beer — visita visual provisória
 
-Página estática responsiva. A rolagem percorre 30 recortes externos da rua até o salão e depois quatro vistas internas já existentes. Ao final, o arrasto ou as setas revêem as quatro vistas internas dentro de um ângulo limitado. **É uma sequência de fotografias ilustrativas, não um passeio 3D, panorama 360° ou representação do projeto arquitetônico definitivo.**
+Página estática responsiva. A apresentação principal usa a fachada e a entrada fornecidas em 1672 × 941 px, com aproximação por escala e transição gradual, seguida por quatro vistas internas. Os 30 recortes externos originais continuam acessíveis em `?modo=quadros`, seguidos pelas mesmas quatro vistas internas. O arrasto ou as setas revêem as quatro vistas internas dentro de um ângulo limitado. **É uma simulação com fotografias ilustrativas, não um passeio 3D, vídeo contínuo, panorama 360° ou representação do projeto arquitetônico definitivo.**
 
-O banner de passeio mostra somente as fotografias, controles discretos de ícone e a barra de progresso. A navegação com texto fica na faixa preta acima da imagem. Os ícones e o estado da cena mantêm rótulos acessíveis para leitores de tela.
+O banner mostra somente as fotografias, controles discretos de ícone e barra de progresso. A navegação com texto fica na faixa preta acima da imagem. Os controles e a cena têm rótulos para leitores de tela. O sentido original da rolagem foi preservado, e recuar reverte o percurso; após o banner a página rola normalmente.
 
-## Trocar os materiais
+## Materiais e substituição
 
-- `dist/assets/externa-01.png` a `dist/assets/externa-30.png`: os 30 recortes fornecidos, intactos e na ordem da grade. Cada um mede 272 × 130 px. A sequência usa pré-decodificação, atualização com `requestAnimationFrame` e fusão breve entre vizinhos. Substitua pelo mesmo nome quando houver imagens de maior resolução.
-- `dist/assets/cena-05.png` a `dist/assets/cena-08.png`: quatro vistas internas anteriores, após o quadro externo 30. Os oito recortes antigos continuam guardados; 01–04 saíram apenas da sequência ativa. O enquadramento respeita as proporções, com o trecho externo preenchendo a janela do passeio e foco na porta; em telas verticais, parte das laterais é cortada. Os quatro recortes internos têm limite de 2× e fundo desfocado. A baixa resolução das 30 imagens externas fica visível em telas grandes e não pode ser recuperada com CSS. O quadro externo 30 já entra no salão; a junção com a vista interna 05 tem diferença de perspectiva. Não há interpolação geométrica entre fotos. O ritmo está em `dist/experience.js`; as larguras máximas nos atributos `--display-w` em `dist/index.html`.
-- `dist/assets/fachada-final.png`, `dist/assets/entrada-final.png` e `dist/assets/interior-conceito.webp`: materiais anteriores preservados no repositório, atualmente fora do passeio.
+- `dist/assets/fachada-final.png` e `dist/assets/entrada-final.png`: fotos grandes do percurso principal. O movimento é uma aproximação simulada; há diferença de perspectiva entre as duas.
+- `dist/assets/externa-01.png` a `dist/assets/externa-30.png`: 30 recortes originais intactos, na ordem da grade, cada um com 272 × 130 px. Para rever essa versão, abra o Site com `?modo=quadros`. A sequência pré-decodifica imagens, renderiza por `requestAnimationFrame` e usa fusão breve entre quadros vizinhos. Arquivos individuais maiores poderão substituí-los mantendo os nomes.
+- `dist/assets/cena-05.png` a `dist/assets/cena-08.png`: quatro vistas internas, usadas nas duas versões. Os recortes antigos 01–04 estão guardados no repositório, mas fora do passeio. O enquadramento preserva proporções, com limite de 2× nas imagens internas e fundo desfocado. A junção do quadro externo 30 com a vista interna 05 tem diferença de perspectiva.
+- `dist/assets/interior-conceito.webp`: material anterior preservado, fora do passeio.
 - `dist/hero.jpg`: foto de cerveja na seção final.
 - Para adicionar áudio autorizado, copie o arquivo para `dist/assets/` e preencha `data-src="assets/nome-do-arquivo.mp3"` no elemento `<audio id="ambient-audio">` de `dist/index.html`. O som só inicia após clique e o volume máximo é 20%; o botão de silenciar permanece visível.
 
-`dist/` contém a versão publicada no Site. O repositório GitHub também recebe `index.html`, `experience.js` e `assets/` na raiz como espelho estático para leitura e edição.
-
-O sentido original da rolagem foi preservado: o progresso continua seguindo o scroll normal da página, e recuar percorre os mesmos quadros na ordem inversa.
+`dist/` contém a versão publicada no Site. O repositório GitHub também recebe `index.html`, `experience.js` e `assets/` na raiz como espelho estático. O ritmo e a escolha da versão estão em `dist/experience.js`.
