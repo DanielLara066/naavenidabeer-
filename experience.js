@@ -25,7 +25,14 @@
   else soundStatus.textContent = 'Trilha ainda não adicionada';
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
-  const interiorStart = 4; // The last four supplied frames are views from inside.
+  const interiorStart = 30; // The four earlier interior views follow the new 30-frame approach.
+  const mainImages = frames.map((item) => item.querySelector('.frame-image'));
+  const ready = mainImages.map((img) => img.complete && img.naturalWidth > 0);
+  mainImages.forEach((img, i) => {
+    const markReady = () => { ready[i] = true; requestRender(); };
+    img.addEventListener('load', markReady, {once:true});
+    if (img.decode) img.decode().then(markReady).catch(() => {});
+  });
   function syncLookButtons() {
     lookLeft.disabled = lookFrame >= frames.length - 1;
     lookRight.disabled = lookFrame <= interiorStart;
@@ -44,17 +51,27 @@
     const range = Math.max(1, journey.offsetHeight - window.innerHeight);
     progress = clamp((window.scrollY - journey.offsetTop) / range, 0, 1);
     // Native scroll controls the photographic order, and reverse scroll retraces it.
-    const inside = progress >= .88;
+    const outsideEnd = .74;
+    const insideEnd = .93;
+    const inside = progress >= insideEnd;
     if (!inside) lookFrame = frames.length - 1;
-    const position = inside ? lookFrame : (progress / .88) * (frames.length - 1);
+    const position = inside ? lookFrame : progress < outsideEnd
+      ? (progress / outsideEnd) * (interiorStart - 1)
+      : (interiorStart - 1) + (progress - outsideEnd) / (insideEnd - outsideEnd) * (frames.length - interiorStart);
     const shown = reducedMotion.matches ? Math.round(position) : position;
     const index = Math.min(frames.length - 1, Math.floor(shown));
     const phase = shown - index;
-    const t = clamp((phase - .28) / .72, 0, 1);
+    const t = clamp((phase - .68) / .32, 0, 1);
     const fade = t * t * (3 - 2 * t);
-    frames.forEach((frame, i) => {
-      frame.style.opacity = String(i === index ? 1 : i === index + 1 ? fade : 0);
-      frame.setAttribute('aria-hidden', String(i !== (fade > .5 ? index + 1 : index)));
+    const availableIndex = ready[index] ? index : ready.findLastIndex((value, i) => value && i <= index);
+    const base = availableIndex < 0 ? 0 : availableIndex;
+    const next = base === index && ready[index + 1] ? index + 1 : -1;
+    frames.forEach((item, i) => {
+      const opacity = i === base ? 1 : i === next ? fade : 0;
+      if (item.style.opacity !== String(opacity)) item.style.opacity = String(opacity);
+      const hidden = String(i !== (next >= 0 && fade > .5 ? next : base));
+      if (item.getAttribute('aria-hidden') !== hidden) item.setAttribute('aria-hidden', hidden);
+      item.classList.toggle('is-active', opacity > 0);
     });
     journey.dataset.scene = inside ? 'inside' : 'outside';
     lookSurface.tabIndex = inside ? 0 : -1;
