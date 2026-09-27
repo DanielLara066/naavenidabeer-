@@ -1,7 +1,7 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const journey = $('inicio');
-  const storyboard = new URLSearchParams(location.search).get('modo') === 'quadros';
+  const storyboard = new URLSearchParams(location.search).get('modo') !== 'hd';
   journey.dataset.mode = storyboard ? 'storyboard' : 'hd';
   const frames = [...document.querySelectorAll(storyboard ? '.exterior-frame, .interior-frame' : '.hd-frame, .interior-frame')];
   const lookSurface = $('look-surface');
