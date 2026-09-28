@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#080808">
-  <meta name="description" content="Na Avenida Beer: um espaço para reunir a turma, brindar e aproveitar cada momento.">
+  <meta name="description" content="Percorra a fachada e a entrada da Na Avenida Beer em uma sequência fotográfica.">
   <title>Na Avenida Beer | Bar e restaurante</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23080808'/%3E%3Cpath d='M17 44V20h5l20 17V20h5v24h-5L22 27v17z' fill='%23d0af79'/%3E%3C/svg%3E">
+  <link rel="preload" href="assets/nova-01.png" as="image">
   <style>
     :root{color-scheme:dark;--black:#080808;--panel:#111110;--line:#38352f;--white:#f5f2ed;--muted:#b5b1aa;--gold:#d0af79}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}a:focus-visible,button:focus-visible,.look-surface:focus-visible{outline:2px solid var(--gold);outline-offset:4px}.wrap{width:min(1240px,calc(100% - 64px));margin-inline:auto}
@@ -63,15 +64,39 @@
     @media(prefers-reduced-motion:reduce){.hd-frame .frame-image{transform:none!important}}
     .icon-button:disabled{opacity:.38;cursor:default}
     @media(prefers-reduced-motion:reduce){.sequence-frame{will-change:auto}.frame-backdrop{filter:blur(18px) brightness(.22)}}
-    .empty-hero{height:clamp(260px,42svh,440px);background:linear-gradient(180deg,#090909 0%,#11100e 85%,#090909 100%);border-bottom:1px solid #302719}
-    @media(max-width:650px){.empty-hero{height:clamp(220px,34svh,340px)}}
+    .photo-journey{height:560svh;background:#080808}
+    .photo-journey .journey-sticky{min-height:0}
+    .photo-journey .sequence-scene{position:absolute;inset:0;background:#080808}
+    .photo-journey .sequence-frame{position:absolute;inset:0;display:block;opacity:0;pointer-events:none;will-change:auto}
+    .photo-journey .sequence-frame:first-child{opacity:1}
+    .photo-journey .sequence-frame.is-active{will-change:opacity}
+    .photo-journey .frame-image{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:var(--focus-x,50%) center}
+    .photo-journey .progress{height:3px}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-journey .sequence-frame{will-change:auto}}
   </style>
 </head>
 <body>
   <a class="skip-link" href="#destaques">Pular abertura e ir para os destaques</a>
   <header class="site-header"><div class="wrap"><a class="brand" href="#inicio" aria-label="Na Avenida Beer, voltar ao início"><span class="brand-mark" aria-hidden="true">N</span><span>Na Avenida<small>Beer</small></span></a><nav aria-label="Navegação principal"><a href="#destaques">Destaques</a><a href="#sobre">A experiência</a><a class="nav-accent" href="#contato">Conheça a casa</a><button class="sound-button" id="mute-button" type="button" aria-label="Ativar som" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="sound-wave" d="M16 9a4 4 0 0 1 0 6M18.5 6a8 8 0 0 1 0 12"/><path class="sound-slash" d="M3 3l18 18"/></svg></button></nav></div></header>
   <main>
-    <div class="empty-hero" id="inicio" aria-hidden="true"></div>
+    <section class="journey photo-journey" id="inicio" aria-label="Passeio fotográfico pela fachada e entrada da Na Avenida Beer">
+      <div class="journey-sticky" id="journey-view">
+        <div class="sequence-scene">
+          <div class="sequence-frame" style="--focus-x:58%" data-stage="Fachada"><img class="frame-image" src="assets/nova-01.png" alt="Cena 01 de 10: Fachada noturna da Na Avenida Beer vista da rua" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-02.png" alt="Cena 02 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-03.png" alt="Cena 03 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-04.png" alt="Cena 04 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-05.png" alt="Cena 05 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:55%" data-stage="Entrada"><img class="frame-image" src="assets/nova-06.png" alt="Cena 06 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-07.png" alt="Cena 07 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-08.png" alt="Cena 08 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-09.png" alt="Cena 09 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-10.png" alt="Cena 10 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+        </div>
+        <span class="sr-only" id="scene-status" role="status" aria-live="polite">01 / 10 · Fachada</span>
+        <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
+      </div>
+    </section>
     <section class="section" id="destaques"><div class="wrap"><div class="section-header"><div><div class="eyebrow">A experiência</div><h2>Seu lugar na avenida.</h2></div><p class="section-intro">Um espaço para reunir a turma, brindar sem pressa e aproveitar cada momento.</p></div><div class="cards"><article class="card"><span class="card-num">01 /</span><div><h3>Cerveja gelada</h3><p>O brinde certo para começar bem e deixar a conversa seguir.</p></div></article><article class="card"><span class="card-num">02 /</span><div><h3>Bons encontros</h3><p>Tem sempre um motivo para juntar os amigos na mesma mesa.</p></div></article><article class="card"><span class="card-num">03 /</span><div><h3>Clima de casa</h3><p>Um lugar para chegar, relaxar e aproveitar sem olhar para o relógio.</p></div></article></div></div></section>
     <section class="statement" id="sobre"><div class="wrap"><h2>Entre uma conversa e outra, nasce a <em>melhor história.</em></h2><p>Na Avenida Beer. O próximo encontro já tem lugar.</p></div></section>
     <div class="beer-photo" aria-hidden="true"><img src="hero.jpg" alt="" loading="lazy"></div>
