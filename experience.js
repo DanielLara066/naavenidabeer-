@@ -25,6 +25,11 @@
   $('year').textContent = new Date().getFullYear();
   if (audioSource) audio.src = audioSource;
   else soundStatus.textContent = 'Trilha ainda não adicionada';
+  if (!frames.length) {
+    muteButton.disabled = true;
+    muteButton.setAttribute('aria-label', 'Som indisponível');
+    return;
+  }
 
   const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
   const interiorStart = storyboard ? 30 : 2;
