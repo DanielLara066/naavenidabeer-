@@ -72,7 +72,8 @@
     .photo-journey .sequence-frame.is-active{will-change:opacity}
     .photo-journey .frame-image{position:absolute;inset:0;width:100%;height:100%;max-height:none;object-fit:cover;object-position:var(--focus-x,50%) center}
     .photo-journey .progress{height:3px}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-journey .sequence-frame{will-change:auto}}
+    .photo-journey .frame-image{object-position:center;transform-origin:center;will-change:transform;backface-visibility:hidden}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.photo-journey .sequence-frame,.photo-journey .frame-image{will-change:auto}}
   </style>
 </head>
 <body>
@@ -82,16 +83,16 @@
     <section class="journey photo-journey" id="inicio" aria-label="Passeio fotográfico pela fachada e entrada da Na Avenida Beer">
       <div class="journey-sticky" id="journey-view">
         <div class="sequence-scene">
-          <div class="sequence-frame" style="--focus-x:58%" data-stage="Fachada"><img class="frame-image" src="assets/nova-01.png" alt="Cena 01 de 10: Fachada noturna da Na Avenida Beer vista da rua" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-02.png" alt="Cena 02 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-03.png" alt="Cena 03 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-04.png" alt="Cena 04 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:58%" data-stage="Aproximação"><img class="frame-image" src="assets/nova-05.png" alt="Cena 05 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:55%" data-stage="Entrada"><img class="frame-image" src="assets/nova-06.png" alt="Cena 06 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-07.png" alt="Cena 07 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-08.png" alt="Cena 08 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-09.png" alt="Cena 09 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
-          <div class="sequence-frame" style="--focus-x:50%" data-stage="Entrada"><img class="frame-image" src="assets/nova-10.png" alt="Cena 10 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Fachada"><img class="frame-image" src="assets/nova-01.png" alt="Cena 01 de 10: Fachada noturna da Na Avenida Beer vista da rua" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Aproximação"><img class="frame-image" src="assets/nova-02.png" alt="Cena 02 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Aproximação"><img class="frame-image" src="assets/nova-03.png" alt="Cena 03 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Aproximação"><img class="frame-image" src="assets/nova-04.png" alt="Cena 04 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Aproximação"><img class="frame-image" src="assets/nova-05.png" alt="Cena 05 de 10: Aproximação gradual da entrada da Na Avenida Beer" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Entrada"><img class="frame-image" src="assets/nova-06.png" alt="Cena 06 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Entrada"><img class="frame-image" src="assets/nova-07.png" alt="Cena 07 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Entrada"><img class="frame-image" src="assets/nova-08.png" alt="Cena 08 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Entrada"><img class="frame-image" src="assets/nova-09.png" alt="Cena 09 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
+          <div class="sequence-frame" data-stage="Entrada"><img class="frame-image" src="assets/nova-10.png" alt="Cena 10 de 10: Vista da entrada aberta e do balcão ao fundo" draggable="false"></div>
         </div>
         <span class="sr-only" id="scene-status" role="status" aria-live="polite">01 / 10 · Fachada</span>
         <div class="progress" aria-hidden="true"><span id="progress-fill"></span></div>
