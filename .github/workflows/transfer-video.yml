@@ -1,0 +1,14 @@
+name: Transfer exact banner video
+on: [push]
+permissions:
+  contents: read
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: exact-banner-video
+          path: assets/banner-original.mp4
+          retention-days: 1
